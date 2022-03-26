@@ -2,13 +2,28 @@ from django.db import models
 from datetime import datetime
 from relators.models import Relator
 
+state_choices = [
+    ('Berat', 'Berat'),
+    ('Dibër', 'Dibër'),
+    ('Durrës', 'Durrës'),
+    ('Elbasan', 'Elbasan'),
+    ('Fier', 'Fier'),
+    ('Girokastër', 'Girokastër'),
+    ('Korçë', 'Korçë'),
+    ('Kukës', 'Kukës'),
+    ('Lezhë', 'Lezhë'),
+    ('Shkodër', 'Shkodër'),
+    ('Tiranë', 'Tiranë'),
+    ('Vlorë', 'Vlorë'),
+]
+
 
 class Listing(models.Model):
     relator = models.ForeignKey(Relator, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
+    state = models.CharField(max_length=50, choices=state_choices, default='Tiranë')
     zipcode = models.CharField(max_length=20)
     description = models.TextField(blank=True)
     price = models.IntegerField()
