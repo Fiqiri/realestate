@@ -1,6 +1,10 @@
 .btn-secondary {
   color: #fff !important; }
 
+.navbar-toggler{
+    color: #c2a766 !important;
+}
+
 img {
   width: 100%; }
 
@@ -13,6 +17,12 @@ img {
 
 .social a {
   margin-right: 0.4rem; }
+
+.p-3 {
+    padding: 1rem !important;
+    BACKGROUND-COLOR: #ae965b;
+    color: white;
+}
 
 #showcase {
   background: url(../img/showcase.jpg) no-repeat top center fixed;

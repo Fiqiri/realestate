@@ -17,10 +17,15 @@ state_choices = [
     ('Vlorë', 'Vlorë'),
 ]
 
+type = [
+    ('Shitje', 'Shitje'),
+    ('Qera', 'Qera'),
+]
 
 class Listing(models.Model):
     relator = models.ForeignKey(Relator, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
+    shitje_qera = models.CharField(max_length=25, choices=type, default='Shitje')
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=50, choices=state_choices, default='Tiranë')
@@ -28,7 +33,7 @@ class Listing(models.Model):
     description = models.TextField(blank=True)
     price = models.IntegerField()
     bedrooms = models.IntegerField()
-    bathrooms = models.DecimalField(max_digits=2, decimal_places=1)
+    bathrooms = models.IntegerField()
     garage = models.IntegerField(default=0)
     area = models.IntegerField()
     lot_size = models.DecimalField(max_digits=5, decimal_places=1)
