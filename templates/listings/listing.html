@@ -96,7 +96,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-money-bill-alt"></i> Price:
-                  <span class="float-right">€{{ listing.price | intcomma }}</span>
+                  <span class="float-right">{{ listing.price | intcomma }} €</span>
                 </li>
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-bed"></i> Bedrooms:
@@ -109,6 +109,11 @@
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-car"></i> Garage:
                   <span class="float-right">{{ listing.garage }}
+                  </span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-map-marker"></i> Location:
+                  <span class="float-right"><a href="{{ listing.location_link }}" style="color:#15522b">Kliko ketu</a>
                   </span>
                 </li>
               </ul>
@@ -129,7 +134,7 @@
                   <span class="float-right">{{ listing.list_date.day }}, {{ listing.list_date.month }}, {{ listing.list_date.year }}</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Realtor:
+                  <i class="fas fa-user"></i> Agjenti:
                   <span class="float-right">{{ listing.relator }}
                   </span>
                 </li>
@@ -150,11 +155,11 @@
           <div class="card mb-3">
             <img class="card-img-top" src="{{ listing.relator.photo.url }}" alt="">
             <div class="card-body">
-              <h5 class="card-title">Property Realtor</h5>
+              <h5 class="card-title">Agjenti i prones</h5>
               <h6 class="text-secondary">{{ listing.relator }}</h6>
             </div>
           </div>
-          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Interesohem</button>
         </div>
       </div>
     </div>
@@ -165,7 +170,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+          <h5 class="modal-title" id="inquiryModalLabel">Interesohem per kete postim</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
@@ -181,11 +186,11 @@
             <input type="hidden" name="realtor_email" value="{{ listing.relator.email }}">
             <input type="hidden" name="listing_id" value="{{ listing.id }}">
             <div class="form-group">
-              <label for="property_name" class="col-form-label">Property:</label>
+              <label for="property_name" class="col-form-label">Titulli:</label>
               <input type="text" name="listing" class="form-control" value="{{ listing.title }}">
             </div>
             <div class="form-group">
-              <label for="name" class="col-form-label">Name:</label>
+              <label for="name" class="col-form-label">Emri:</label>
               <input type="text" name="name" class="form-control" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} required>
             </div>
             <div class="form-group">
@@ -193,15 +198,15 @@
               <input type="email" name="email" class="form-control" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
             </div>
             <div class="form-group">
-              <label for="phone" class="col-form-label">Phone:</label>
+              <label for="phone" class="col-form-label">Numri Celular:</label>
               <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group">
-              <label for="message" class="col-form-label">Message:</label>
+              <label for="message" class="col-form-label">Mesazhi:</label>
               <textarea name="message" class="form-control"></textarea>
             </div>
             <hr>
-            <input type="submit" value="Send" class="btn btn-block btn-secondary">
+            <input type="submit" value="Dergo" class="btn btn-block btn-secondary">
           </form>
         </div>
       </div>

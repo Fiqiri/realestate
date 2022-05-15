@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 from relators.models import Relator
 
-state_choices = [
+city_choices = [
     ('Berat', 'Berat'),
     ('Dibër', 'Dibër'),
     ('Durrës', 'Durrës'),
@@ -17,26 +17,38 @@ state_choices = [
     ('Vlorë', 'Vlorë'),
 ]
 
-type = [
+state_choices = [
+    ('Shqipëri', 'Shqipëri'),
+]
+
+shitje_qera_choices = [
     ('Shitje', 'Shitje'),
     ('Qera', 'Qera'),
+    ('Shitje/Qera', 'Shitje/Qera')
 ]
 
 class Listing(models.Model):
     relator = models.ForeignKey(Relator, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
-    shitje_qera = models.CharField(max_length=25, choices=type, default='Shitje')
+    title_in_english = models.CharField(max_length=200, blank=True)
+
+    shitje_qera = models.CharField(max_length=25, choices=shitje_qera_choices, default='Shitje')
     address = models.CharField(max_length=200)
     state = models.CharField(max_length=50, choices=state_choices, default='Tiranë')
-    city = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, choices=city_choices, default='Tiranë')
+    zona = models.CharField(max_length=100)
+    location_link = models.TextField(blank=True)
+    unique_code = models.CharField(max_length=10, unique=True)
+
     zipcode = models.CharField(max_length=20)
     description = models.TextField(blank=True)
+    description_in_english = models.TextField(blank=True)
     price = models.IntegerField()
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
     garage = models.IntegerField(default=0)
     area = models.IntegerField()
-    lot_size = models.DecimalField(max_digits=5, decimal_places=1)
+    lot_size = models.IntegerField()
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)

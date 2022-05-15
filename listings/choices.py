@@ -24,7 +24,7 @@ price_choices = {
     '1000000': '€ 1M+',
 }
 
-state_choices = {
+city_choices = {
     'Berat': 'Berat',
     'Dibër': 'Dibër',
     'Durrës': 'Durrës',
@@ -38,3 +38,9 @@ state_choices = {
     'Tiranë': 'Tiranë',
     'Vlorë': 'Vlorë',
     }
+
+shitje_qera_choices = {
+    'Shitje': 'Shitje',
+    'Qera': 'Qera',
+    'Shitje/Qera': 'Shitje/Qera'
+}

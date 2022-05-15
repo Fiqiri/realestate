@@ -19,39 +19,42 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label class="sr-only">City</label>
-                <input type="text" name="city" class="form-control" placeholder="City" value="{{ values.city }}">
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">State</label>
-                <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">State (All)</option>
-                  {% for key,value in state_choices.items %}
+                <label class="sr-only">Qyteti</label>
+                <select name="city" class="form-control">
+                  <option selected="true" disabled="disabled">Qyteti (Të gjitha)</option>
+                  {% for key,value in city_choices.items %}
                       <option value="{{ key }}"
-                      {% if key == values.state %}
+                      {% if key == values.city %}
                         selected
                       {% endif %}
                       >{{ value }}</option>
                     {% endfor %}
                 </select>
               </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Zona</label>
+                <input type="text" name="zona" class="form-control" placeholder="Zona" value="{{ values.zona }}">
+              </div>
+
             </div>
             <!-- Form Row 2 -->
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label class="sr-only">Bedrooms</label>
-                <select name="bedrooms" class="form-control">
-                  <option selected="true" disabled="disabled">Bedrooms (Any)</option>
-                  {% for key,value in bedroom_choices.items %}
+                <label class="sr-only">Shitje/Qera</label>
+                <select name="shitje_qera" class="form-control">
+                  <option selected="true" disabled="disabled">Shitje ose Qera</option>
+                  {% for key,value in shitje_qera_choices.items %}
                       <option value="{{ key }}"
-                      {% if key == values.bedrooms %}
+                      {% if key == values.shitje_qera %}
                         selected
                       {% endif %}
                       >{{ value }}</option>
                     {% endfor %}
                 </select>
               </div>
+
+       <!--
               <div class="col-md-6 mb-3">
                 <select name="price" class="form-control">
                   <option selected="true" disabled="disabled">Max Price (All)</option>
@@ -64,8 +67,9 @@
                     {% endfor %}
                 </select>
               </div>
+       -->
             </div>
-            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Kërko</button>
           </form>
         </div>
       </div>
@@ -84,7 +88,7 @@
           <li class="breadcrumb-item">
             <a href="{% url 'listings' %}">Browse Listings</a>
           </li>
-          <li class="breadcrumb-item active"> Search Results</li>
+          <li class="breadcrumb-item active"> Rezultatet e kërkuara</li>
         </ol>
       </nav>
     </div>
@@ -102,14 +106,20 @@
             <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
             <div class="card-img-overlay">
               <h2>
-                <span class="badge badge-secondary text-white">${{ listing.price | intcomma }}</span>
+                <span class="badge badge-secondary text-white">€{{ listing.price | intcomma }}</span>
               </h2>
+              <h2>
+                    <span class="badge badge-secondary text-white-21">{{ listing.shitje_qera }}</span>
+                  </h2>
             </div>
+            <div class="card-img-overlay-3">
+
+                </div>
             <div class="card-body">
               <div class="listing-heading text-center">
                 <h4 class="text-primary">{{ listing.title }}</h4>
                 <p>
-                  <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }}{{listing.state }}, {{ listing.zipcode }}</p>
+                  <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }}, {{listing.zona }}, {{ listing.zipcode }}</p>
               </div>
               <hr>
               <div class="row py-2 text-secondary">
@@ -134,7 +144,7 @@
                   <i class="fas fa-clock"></i>{{ listing.list_date | timesince }}</div>
               </div>
               <hr>
-              <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+              <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Më shumë</a>
             </div>
           </div>
         </div>
@@ -142,7 +152,7 @@
           {% endfor %}
         {% else %}
             <div class="col-md-12">
-              <p>No Listings Available</p>
+              <p>Asnjë listim i disponueshëm</p>
             </div>
         {% endif %}
       </div>

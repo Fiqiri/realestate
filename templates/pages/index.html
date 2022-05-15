@@ -15,31 +15,36 @@
       <div class="home-search p-5">
         <div class="overlay p-5">
           <h1 class="display-4 mb-4">
-            Property Searching Just Got So Easy
+            Të kërkosh për pronë, është e thjesht
           </h1>
-          <p class="lead">You can search by Keyword (Area, Address, Pool, etc) by filtering in Countries Price Number of Bedrooms!</p>
+          <p class="lead">Ju mund te kërkoni me fjalë kyçe (Sipërfaqe, Adresa, pishin, etj) duke filtruar në fushat e mëposhtme!</p>
           <div class="search">
             <form action="{% url 'search' %}">
               <!-- Form Row 1 -->
               <div class="form-row">
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                  <input type="text" name="keywords" class="form-control" placeholder="Fjalë kyçe (pishin, garazh, etj)">
                 </div>
 
                 <div class="col-md-4 mb-3">
-                  <label class="sr-only">Qarku</label>
-                  <select name="state" class="form-control">
-                    <option selected="true" disabled="disabled">Country (All)</option>
-                      {% for key,value in state_choices.items %}
+                  <label class="sr-only">Qyteti</label>
+                  <select name="city" class="form-control">
+                    <option selected="true" disabled="disabled">Qyteti (Te gjitha)</option>
+                      {% for key,value in city_choices.items %}
                         <option value="{{ key }}">{{ value }}</option>
                       {% endfor %}
                   </select>
                 </div>
-
+<!--
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">City</label>
                   <input type="text" name="city" class="form-control" placeholder="City">
+                </div>
+-->
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Zona</label>
+                  <input type="text" name="zona" class="form-control" placeholder="Zona">
                 </div>
 
               </div>
@@ -47,14 +52,19 @@
               <!-- Form Row 2 -->
               <div class="form-row">
                 <div class="col-md-6 mb-3">
-                  <label class="sr-only">Bedrooms</label>
-                  <select name="bedrooms" class="form-control">
-                    <option selected="true" disabled="disabled">Bedrooms (All)</option>
-                    {% for key, value in bedroom_choices.items %}
-                        <option value="{{ key }}">{{ value }}</option>
+                  <label class="sr-only">Shitje/Qera</label>
+                <select name="shitje_qera" class="form-control">
+                  <option selected="true" disabled="disabled">Shitje ose Qera</option>
+                  {% for key,value in shitje_qera_choices.items %}
+                      <option value="{{ key }}"
+                      {% if key == values.shitje_qera %}
+                        selected
+                      {% endif %}
+                      >{{ value }}</option>
                     {% endfor %}
-                  </select>
+                </select>
                 </div>
+<!--
                 <div class="col-md-6 mb-3">
                   <select name="price" class="form-control" id="type">
                     <option selected="true" disabled="disabled">Max Price (Any)</option>
@@ -63,8 +73,9 @@
                     {% endfor %}
                   </select>
                 </div>
+-->
               </div>
-              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Kërko</button>
             </form>
           </div>
         </div>
@@ -78,7 +89,7 @@
   <!-- Listings -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Listings</h3>
+      <h3 class="text-center mb-3">Listimet e fundit</h3>
       <div class="row">
         {% if listings %}
           {% for listing in listings %}
@@ -88,16 +99,20 @@
                 <img class="card-img-top" src="{{listing.photo_main.url}}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">€{{ listing.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">€ {{ listing.price | intcomma }}</span>
+                  </h2>
+                   <h2>
+                    <span class="badge badge-secondary text-white-21">{{ listing.shitje_qera }}</span>
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ listing.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }}, {{ listing.state }}, {{ listing.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }}, {{ listing.zona }}, {{ listing.zipcode }}</p>
                   </div>
                   <hr>
+
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
                       <i class="fas fa-th-large"></i>m<sup>2</sup>: {{ listing.area }}</div>

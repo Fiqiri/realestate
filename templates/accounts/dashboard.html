@@ -53,14 +53,14 @@
                     <td>{{ contact.id }}</td>
                     <td>{{ contact.listing }}</td>
                     <td>
-                      <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Listing</a>
+                      <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">Shiko listimin</a>
                     </td>
                   </tr>
                 {% endfor %}
               </tbody>
             </table>
           {% else %}
-            <p>You have not made any inquiries</p>
+            <p>Ju jeni interesuar per kto</p>
           {% endif %}
         </div>
       </div>
