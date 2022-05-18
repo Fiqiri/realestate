@@ -25,18 +25,19 @@ price_choices = {
 }
 
 city_choices = {
-    'Berat': 'Berat',
-    'Dibër': 'Dibër',
-    'Durrës': 'Durrës',
-    'Elbasan': 'Elbasan',
-    'Fier': 'Fier',
-    'Girokastër': 'Girokastër',
-    'Korçë': 'Korçë',
-    'Kukës': 'Kukës',
-    'Lezhë': 'Lezhë',
-    'Shkodër': 'Shkodër',
     'Tiranë': 'Tiranë',
+    'Durrës': 'Durrës',
+    'Shkodër': 'Shkodër',
+    'Elbasan': 'Elbasan',
     'Vlorë': 'Vlorë',
+    'Korçë': 'Korçë',
+    'Fier': 'Fier',
+    'Berat': 'Berat',
+    'Lezhë': 'Lezhë',
+    'Dibër': 'Dibër',
+    'Kukës': 'Kukës',
+    'Girokastër': 'Girokastër',
+
     }
 
 shitje_qera_choices = {
